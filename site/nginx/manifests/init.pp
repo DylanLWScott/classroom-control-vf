@@ -5,13 +5,13 @@ class nginx {
     mode => '0664',
   }
   
-  package { 'epel-release':
+  yumrepo { 'epel_local':
     ensure => 'present',
   }
 
   package { 'nginx':
     ensure  => 'present',
-    require =>Package['epel-release'],
+    require =>Yumrepo['epel_local'],
   }
 
   file { [ '/var/www', '/etc/nginx/conf.d' ]:
