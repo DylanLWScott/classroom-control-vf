@@ -64,4 +64,6 @@ host { 'testing.puppetlabs.vm':
 
 include users
 
+include skeleton
+
 }
