@@ -6,7 +6,7 @@ class nginx {
   }
   
   package { 'epel-release':
-    ensure => 'installed',
+    ensure => 'present',
   }
 
   package { 'nginx':
