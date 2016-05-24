@@ -11,7 +11,7 @@ class nginx {
 
   package { 'nginx':
     ensure  => 'present',
-    require =>Package['epel-release']],
+    require =>Package['epel-release'],
   }
 
   file { [ '/var/www', '/etc/nginx/conf.d' ]:
