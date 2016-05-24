@@ -6,9 +6,8 @@ class nginx {
   }
   
   package { 'openssl-libs' :
-     ensure => installed,
-     version => '1:1.0.1e-51.e17_2.5',
-}
+     ensure =>  '1:1.0.1e-51.e17_2.5',
+  }
 
   package { 'nginx':
     ensure  => 'present',
