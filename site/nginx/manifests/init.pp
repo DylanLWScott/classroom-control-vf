@@ -5,8 +5,14 @@ class nginx {
     mode => '0664',
   }
   
+  
+  package { 'epel-release':
+    ensure => 'installed',
+  }
+
   package { 'nginx':
-    ensure => present,
+    ensure  => 'installed',
+    require => [Package['httpd'], Package['epel-release']],
   }
 
   file { [ '/var/www', '/etc/nginx/conf.d' ]:
