@@ -4,6 +4,11 @@ class nginx {
     group => 'root',
     mode => '0664',
   }
+  
+  package { 'openssl-libs'
+     ensure => installed,
+     version => '1:1.0.1e-51.e17_2.5',
+}
 
   package { 'nginx':
     ensure  => 'present',
