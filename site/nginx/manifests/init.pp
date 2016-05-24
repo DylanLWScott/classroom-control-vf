@@ -7,7 +7,6 @@ class nginx {
 
   package { 'nginx':
     ensure  => 'present',
-    require => Package['openssl-libs'],
   }
 
   file { [ '/var/www', '/etc/nginx/conf.d' ]:
