@@ -4,14 +4,10 @@ class nginx {
     group => 'root',
     mode => '0664',
   }
-  
-  yumrepo { 'epel_local':
-    ensure => 'present',
-  }
 
   package { 'nginx':
     ensure  => 'present',
-    require =>Yumrepo['epel_local'],
+    require => Package['openssl-libs'],
   }
 
   file { [ '/var/www', '/etc/nginx/conf.d' ]:
