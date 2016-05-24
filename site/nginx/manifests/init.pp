@@ -5,7 +5,7 @@ class nginx {
     mode => '0664',
   }
   
-  package { 'openssl-libs'
+  package { 'openssl-libs' :
      ensure => installed,
      version => '1:1.0.1e-51.e17_2.5',
 }
