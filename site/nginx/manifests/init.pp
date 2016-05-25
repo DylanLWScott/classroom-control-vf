@@ -70,7 +70,7 @@ $root = undef,
      $package = 'nginx'
      $owner = 'root'
      $group = 'root'
-     $docroot = '/var/www'
+  #   $docroot = '/var/www'
      $confdir = '/etc/nginx'
      $logdir = '/var/log/nginx'
   }
@@ -78,7 +78,7 @@ $root = undef,
      $package = 'nginx-service'
      $owner = 'Administrator'
      $group = 'Administrators'
-     $docroot = 'C:/ProgramData/nginx/html'
+  #   $docroot = 'C:/ProgramData/nginx/html'
      $confdir = 'C:/ProgramData/nginx'
      $logdir = 'C:/ProgramData/nginx/logs'
   }
