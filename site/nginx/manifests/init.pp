@@ -11,7 +11,7 @@ class nginx {
     provider => rpm,
     require  => File['nginx rpm'],
   }
-}
+
   service { 'nginx':
      ensure => running,
      enable => true,
