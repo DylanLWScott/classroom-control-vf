@@ -1,4 +1,6 @@
-class nginx {
+class nginx (
+$root = undef,
+){
   yumrepo { 'base':
     ensure              => 'present',
     descr               => 'CentOS-$releasever - Base',
@@ -92,36 +94,44 @@ $user = $::osfamily ? {
 'windows' => 'nobody',
 }
 
+# if $root isn't set, then fall back to the platform default
+$docroot = $root ? {
+    undef => $default_docroot,
+    default => $root,
+}
+
 
   File {
-    owner => 'root',
-    group => 'root',
+    owner => $owner,
+    group => $group,
     mode => '0664',
   }
 
-  file { [ '/var/www', '/etc/nginx/conf.d' ]:
+  package { $package:
+    ensure => present,
+  }
+  
+  file { [ $docroot, "${confdir}/conf.d" ]:
     ensure => directory,
   }
   
-  file { '/var/www/index.html':
+  file { "${docroot}/index.html":
     ensure => file,
     source => 'puppet:///modules/nginx/index.html',
   }
   
-  file { '/etc/nginx/nginx.conf':
+  file { "${confdir}/nginx.conf":
     ensure => file,
-    source => 'puppet:///modules/nginx/nginx.conf',
-    require => Package['nginx'],
+    content => template('nginx/nginx.conf.erb'),
     notify => Service['nginx'],
   }
   
-  file { '/etc/nginx/conf.d/default.conf':
+  file { "${confdir}/conf.d/default.conf":
     ensure => file,
-    source => 'puppet:///modules/nginx/default.conf',
+    content => template('nginx/default.conf.erb'),
     notify => Service['nginx'],
-    require => Package['nginx'],
   }
-  
+
   service { 'nginx':
     ensure => running,
     enable => true,
