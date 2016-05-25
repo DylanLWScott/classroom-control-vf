@@ -70,14 +70,7 @@ $user = $nginx::params::user,
     provider => rpm,
     require  => File['nginx rpm'],
   }
-
-# if $root isn't set, then fall back to the platform default
-$docroot = $root ? {
-    undef => $default_docroot,
-    default => $root,
-}
-
-
+  
   File {
     owner => $owner,
     group => $group,
