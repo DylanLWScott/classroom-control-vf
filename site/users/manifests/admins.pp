@@ -11,3 +11,5 @@ users::managed_user { 'aaron':
 group { 'staff':
   ensure => present,
 }
+
+}
