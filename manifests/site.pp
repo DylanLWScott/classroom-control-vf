@@ -76,6 +76,8 @@ notify { $message: }
 
 # include users
 
+include nginx
+
 include skeleton
 
 }
