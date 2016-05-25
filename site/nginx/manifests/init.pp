@@ -62,11 +62,7 @@ class nginx {
     provider => rpm,
     require  => File['nginx rpm'],
   }
-  
-  package { 'nginx':
-     ensure => present,
-  }
-  
+
   file { '/var/www':
      ensure => directory,
      owner => 'root',
